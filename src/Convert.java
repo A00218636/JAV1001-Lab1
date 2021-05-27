@@ -8,135 +8,121 @@ Any wrong input by user will prompt to input a correct value and UoM combination
 
 */
 
-
-
-
-
 import java.util.Scanner;
-
-
 
 public class Convert {
     public static void main(String[] args) throws Exception {
 
-
-        //Display conversion options available for user
+        // Display conversion options available for user
         System.out.println("Following conversions are available: ");
-        System.out.println("mi <=> km " + "\n"+ "cm <=> in" + "\n"+ "kg <=> lb"+"\n"+ "g <=> oz"+ "\n"+ "C <=> F"+ "\n"+"L <=> cups" );
+        System.out.println("mi <=> km " + "\n" + "cm <=> in" + "\n" + "kg <=> lb" + "\n" + "g <=> oz" + "\n" + "C <=> F"
+                + "\n" + "L <=> cups");
         System.out.println("Enter a value to convert: ");
-       
 
-        //Take User input
-        Scanner sc = new Scanner(System.in);    
+        // Take User input
+        Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
 
-        double val=0;
+        double val = 0;
         String uom;
 
-        //Remove any empty spaces in input
+        // Remove any empty spaces in input
         String convertedString = str.replaceAll("\\s", "").toLowerCase();
 
-        //Split digits and string and assign the split values to array
+        // Split digits and string and assign the split values to array
         String[] part = convertedString.split("(?<=\\d)(?=\\D)");
 
-        //If input is a decimal value then part array will have 3 values
-        //i.e. value before decimal + value after decimal + UoM
-        if(part.length== 3)
-        {
-           part[0] = part[0] + part[1];
-           uom = part[2];
-           
-        }
-        else{
+        // If input is a decimal value then part array will have 3 values
+        // i.e. value before decimal + value after decimal + UoM
+        if (part.length == 3) {
+            part[0] = part[0] + part[1];
+            uom = part[2];
+
+        } else {
             uom = part[1];
         }
 
         val = Double.parseDouble(part[0]);
-        
-    
-        //Declaration for the converted value and UoM
-        double b=0;
-        String convertedUoM="";
-        
-     
-        //Use Switch case for conversion
-        switch(uom){
 
-            case  "km":
-            b = val* 0.62;
-             convertedUoM = "mi";
-             break;
+        // Declaration for the converted value and UoM
+        double b = 0;
+        String convertedUoM = "";
 
-             case "mi":
-             b = val* 1.61;
-             convertedUoM = "km";
-             break;
+        if (uom.equals("cup")) {
+            uom = "cups";
+        }
 
-             case "cm":
-             b = val* 0.39;
-             convertedUoM = "in";
-             break;
+        // Use Switch case for conversion
+        switch (uom) {
 
-             case "in":
-             b = val* 2.54;
-             convertedUoM = "cm";
-             break;
+            case "km":
+                b = val * 0.62;
+                convertedUoM = "mi";
+                break;
 
-             case "kg":
-             b = val* 2.2;
-             convertedUoM = "lb";
-             break;
+            case "mi":
+                b = val * 1.61;
+                convertedUoM = "km";
+                break;
 
-             case "lb":
-             b = val* 0.45;
-             convertedUoM = "kg";
-             break;
+            case "cm":
+                b = val * 0.39;
+                convertedUoM = "in";
+                break;
 
-             case "g":
-             b = val* 0.04;
-             convertedUoM = "oz";
-             break;
+            case "in":
+                b = val * 2.54;
+                convertedUoM = "cm";
+                break;
 
-             case "oz":
-             b = val* 28.35;
-             convertedUoM = "g";
-             break;
+            case "kg":
+                b = val * 2.2;
+                convertedUoM = "lb";
+                break;
 
-             case "l":
-             b = val* 4.17;
-             convertedUoM = "cups";
-             break;
+            case "lb":
+                b = val * 0.45;
+                convertedUoM = "kg";
+                break;
 
-             case "cups":
-             b = val* 0.24;
-             convertedUoM = "L";
-             break;
+            case "g":
+                b = val * 0.04;
+                convertedUoM = "oz";
+                break;
 
-             case "c":
-             b = (val*9/5)+32;
-             convertedUoM = "F";
-             break;
+            case "oz":
+                b = val * 28.35;
+                convertedUoM = "g";
+                break;
 
-             case "f":
-             b = (val-32)*5/9;
-             convertedUoM = "C";
-             break;
+            case "l":
+                b = val * 4.17;
+                convertedUoM = "cups";
+                break;
 
-             
-             default:
-             System.out.println("Please enter a valid unit of measurement.");
+            case "cups":
+                b = val * 0.24;
+                convertedUoM = "L";
+                break;
 
+            case "c":
+                b = (val * 9 / 5) + 32;
+                convertedUoM = "F";
+                break;
 
+            case "f":
+                b = (val - 32) * 5 / 9;
+                convertedUoM = "C";
+                break;
 
+            default:
+                System.out.println("Please enter a valid unit of measurement.");
 
         }
 
-        
-        if(!convertedUoM.equals(""))
-        {
-        System.out.println(str+" is equal to " +b+convertedUoM);
+        if (!convertedUoM.equals("")) {
+            System.out.println(str + " is equal to " + b + convertedUoM);
         }
 
-   
     }
 }

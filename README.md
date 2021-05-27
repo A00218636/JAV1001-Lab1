@@ -1,4 +1,9 @@
-Made changes to accept decimal values.
+Name - Prateek Kumar
+Student Number - A00218636
+
+Program Description - The following code displays the conversion options available to user.
+System asks for the user input and convert the value into corresponding Unit of Measurement.
+Any wrong input by user will prompt to input a correct value and UoM combinationMade changes to accept decimal values.
 ## Getting Started
 
 Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
