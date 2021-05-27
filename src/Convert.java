@@ -22,7 +22,7 @@ public class Convert {
 
         //Display conversion options available for user
         System.out.println("Following conversions are available: ");
-        System.out.println("mi <=> km " + "\n"+ "cm <=> in" + "\n"+ "kg <=> lb"+"\n"+ "g <=> oz"+ "\n"+ "C <=> F");
+        System.out.println("mi <=> km " + "\n"+ "cm <=> in" + "\n"+ "kg <=> lb"+"\n"+ "g <=> oz"+ "\n"+ "C <=> F"+ "\n"+"L <=> cups" );
         System.out.println("Enter a value to convert: ");
        
 
@@ -30,19 +30,32 @@ public class Convert {
         Scanner sc = new Scanner(System.in);    
         String str = sc.nextLine();
 
+        double val=0;
+        String uom;
+
         //Remove any empty spaces in input
-        str = str.replaceAll("\\s", "");
+        String convertedString = str.replaceAll("\\s", "").toLowerCase();
 
         //Split digits and string and assign the split values to array
-        String[] part = str.split("(?<=\\d)(?=\\D)");
-        String uom = part[1];
+        String[] part = convertedString.split("(?<=\\d)(?=\\D)");
 
+        //If input is a decimal value then part array will have 3 values
+        //i.e. value before decimal + value after decimal + UoM
+        if(part.length== 3)
+        {
+           part[0] = part[0] + part[1];
+           uom = part[2];
+           
+        }
+        else{
+            uom = part[1];
+        }
 
-        //Convert input value string to double data type
-        double val = Integer.parseInt(part[0]);
-      
+        val = Double.parseDouble(part[0]);
+        
+    
         //Declaration for the converted value and UoM
-        double b=0.00;
+        double b=0;
         String convertedUoM="";
         
      
@@ -75,12 +88,12 @@ public class Convert {
              break;
 
              case "lb":
-             b = val* 0.54;
+             b = val* 0.45;
              convertedUoM = "kg";
              break;
 
              case "g":
-             b = val* 0.4;
+             b = val* 0.04;
              convertedUoM = "oz";
              break;
 
@@ -89,7 +102,7 @@ public class Convert {
              convertedUoM = "g";
              break;
 
-             case "L":
+             case "l":
              b = val* 4.17;
              convertedUoM = "cups";
              break;
@@ -99,12 +112,12 @@ public class Convert {
              convertedUoM = "L";
              break;
 
-             case "C":
+             case "c":
              b = (val*9/5)+32;
              convertedUoM = "F";
              break;
 
-             case "F":
+             case "f":
              b = (val-32)*5/9;
              convertedUoM = "C";
              break;
